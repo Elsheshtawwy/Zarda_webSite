@@ -19,4 +19,15 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vue: ['vue', 'vue-router', 'pinia'],
+          swiper: ['swiper', 'swiper/vue'],
+          firebase: ['firebase/app', 'firebase/firestore', 'firebase/auth']
+        }
+      }
+    }
+  }
 })

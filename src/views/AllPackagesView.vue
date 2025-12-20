@@ -1,9 +1,11 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import { usePackagesStore } from '@/stores/packages'
+import { usePreferencesStore } from '@/stores/preferences'
 import defaultImage from '/zarda_logo.png'
 
 const store = usePackagesStore()
+const prefs = usePreferencesStore()
 const loading = computed(() => store.loading)
 const packages = computed(() => store.all)
 const activeFilter = ref('الكل')
@@ -28,7 +30,20 @@ const displayedPackages = computed(() => {
   return list
 })
 
-onMounted(() => store.fetchAll())
+onMounted(() => {
+  const key = prefs.sortKey?.value || 'createdAt'
+  const dir = prefs.sortDir?.value || 'desc'
+  if (key === 'price' && dir === 'asc') sortBy.value = 'price-asc'
+  else if (key === 'price' && dir === 'desc') sortBy.value = 'price-desc'
+  else sortBy.value = 'newest'
+  store.fetchAll()
+})
+
+watch(sortBy, (val) => {
+  if (val === 'newest') prefs.setSort('createdAt', 'desc')
+  else if (val === 'price-asc') prefs.setSort('price', 'asc')
+  else if (val === 'price-desc') prefs.setSort('price', 'desc')
+})
 </script>
 
 <template>
@@ -73,7 +88,7 @@ onMounted(() => store.fetchAll())
       <div v-else-if="displayedPackages.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div v-for="pkg in displayedPackages" :key="pkg.id" class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden border border-gray-100 flex flex-col">
           <RouterLink :to="{ name: 'package-details', params: { id: pkg.id } }" class="relative h-60 overflow-hidden block">
-            <img :src="pkg.image || defaultImage" @error="(e)=>e.target.src=defaultImage" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+            <img :src="pkg.image || defaultImage" @error="(e)=>e.target.src=defaultImage" loading="lazy" decoding="async" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
             <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-primary shadow">{{ pkg.category }}</div>
             <div class="absolute bottom-4 left-4 bg-primary text-white px-3 py-1.5 rounded-lg font-bold shadow text-sm">{{ Number(pkg.price).toLocaleString() }} {{ pkg.currency }}</div>
           </RouterLink>

@@ -66,7 +66,6 @@ const logos = [
                                 aria-label="احجز الآن عبر واتساب"
                                 class="w-full flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-green-200 transition-all hover:-translate-y-1"
                             >
-                                <!-- Use img with filter to ensure crisp, consistent white icon across browsers -->
                                 <img
                                     :src="whatsappIcon"
                                     alt="WhatsApp"

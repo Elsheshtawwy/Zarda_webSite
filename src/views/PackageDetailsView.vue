@@ -31,17 +31,14 @@ const fetchPackageDetails = async () => {
 
     if (data) {
       packageData.value = data
-      // تعيين الصورة الافتراضية
       if (packageData.value.images && packageData.value.images.length > 0) {
         currentImage.value = packageData.value.images[0]
       } else {
         currentImage.value = packageData.value.image || defaultImage
       }
       
-      // زيادة عدد المشاهدات
       updateDoc(docRef, { views: increment(1) }).catch(err => console.log(err))
       
-      // تغيير عنوان الصفحة
       document.title = `${packageData.value.title} | زردة للسفر`
 
     } else {
@@ -55,7 +52,6 @@ const fetchPackageDetails = async () => {
   }
 }
 
-// دالة المشاركة
 const sharePackage = async () => {
   if (navigator.share) {
     try {
@@ -73,7 +69,6 @@ const sharePackage = async () => {
 
 onMounted(() => {
   fetchPackageDetails()
-  // السكرول للأعلى عند فتح الصفحة
   window.scrollTo(0, 0)
 })
 </script>
@@ -103,6 +98,7 @@ onMounted(() => {
           <img 
             :src="currentImage || defaultImage" 
             :alt="packageData.title"
+            loading="lazy" decoding="async"
             class="w-full h-full object-cover transition duration-700"
             @error="(e) => e.target.src = defaultImage"
           />
@@ -133,7 +129,7 @@ onMounted(() => {
             class="relative w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden border-2 transition-all duration-300 flex-shrink-0"
             :class="currentImage === img ? 'border-primary ring-2 ring-primary/30 scale-105' : 'border-transparent opacity-70 hover:opacity-100'"
           >
-            <img :src="img" class="w-full h-full object-cover" @error="(e) => e.target.src = defaultImage" />
+            <img :src="img" loading="lazy" decoding="async" class="w-full h-full object-cover" @error="(e) => e.target.src = defaultImage" />
           </button>
         </div>
       </div>
@@ -154,7 +150,7 @@ onMounted(() => {
         <div class="lg:col-span-1">
           <div class="bg-white p-6 rounded-3xl shadow-lg border border-gray-100 sticky top-28">
             <div class="text-center mb-6 bg-gray-50 p-4 rounded-2xl border border-gray-100">
-              <span class="text-gray-500 text-sm font-bold">السعر للشخص</span>
+              <span class="text-gray-500 text-sm font-bold">السعر</span>
               <div class="text-4xl font-extrabold text-primary mt-2 flex justify-center items-end gap-1">
                 {{ Number(packageData.price || 0).toLocaleString('ar') }}
                 <span class="text-lg text-gray-500 font-bold mb-1">{{ packageData.currency || 'USD' }}</span>
@@ -166,10 +162,7 @@ onMounted(() => {
                 <span class="text-gray-500">الوجهة</span>
                 <span class="font-bold">{{ packageData.destination }}</span>
               </div>
-              <div class="flex justify-between border-b border-gray-100 pb-2">
-                <span class="text-gray-500">المدة</span>
-                <span class="font-bold">{{ packageData.days ? packageData.days + ' أيام' : 'غير محدد' }}</span>
-              </div>
+            
             </div>
 
             <a 

@@ -63,7 +63,7 @@ onMounted(() => store.fetchAll())
             <div class="rounded-[1.7rem] p-[2px] bg-gradient-to-br from-primary/10 via-accent/10 to-white transition">
               <div class="pkg-card group bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 h-full flex flex-col transition-all duration-300 hover:shadow-2xl">
                 <RouterLink :to="{ name: 'package-details', params: { id: pkg.id } }" class="relative h-64 overflow-hidden block">
-                  <img :src="pkg.image || defaultImage" @error="(e)=>e.target.src=defaultImage" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                  <img :src="pkg.image || defaultImage" @error="(e)=>e.target.src=defaultImage" loading="lazy" decoding="async" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                   <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
                   <div class="absolute top-4 right-4 flex items-center gap-2">
                     <span v-if="pkg.category" class="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">{{ pkg.category }}</span>

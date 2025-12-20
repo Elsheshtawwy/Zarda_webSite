@@ -9,6 +9,9 @@ export const usePackagesStore = defineStore('packages', () => {
   const error = ref(null)
   const lastFetched = ref(0)
 
+  const CACHE_KEY = 'zarda_public_packages_v1'
+  const CACHE_TTL_MS = 5 * 60 * 1000
+
   const all = computed(() => items.value)
   const latest = (limit = 10) => {
     const sorted = [...items.value].sort((a, b) => (b?.createdAt?.seconds || 0) - (a?.createdAt?.seconds || 0))
@@ -16,12 +19,30 @@ export const usePackagesStore = defineStore('packages', () => {
   }
   const byId = (id) => items.value.find(p => p.id === id)
 
-  const shouldRefetch = (maxAgeMs = 5 * 60 * 1000) => {
+  const shouldRefetch = (maxAgeMs = CACHE_TTL_MS) => {
     if (!items.value.length) return true
     return Date.now() - lastFetched.value > maxAgeMs
   }
 
+  const hydrateFromCache = () => {
+    try {
+      const raw = localStorage.getItem(CACHE_KEY)
+      if (!raw) return false
+      const parsed = JSON.parse(raw)
+      if (!parsed || !Array.isArray(parsed.items)) return false
+      items.value = parsed.items
+      lastFetched.value = parsed.lastFetched || 0
+      return true
+    } catch (_) {
+      return false
+    }
+  }
+
   const fetchAll = async ({ force = false } = {}) => {
+    if (!force && !items.value.length) {
+      const hydrated = hydrateFromCache()
+      if (hydrated && !shouldRefetch()) return
+    }
     if (!force && !shouldRefetch()) return
     loading.value = true
     error.value = null
@@ -35,6 +56,9 @@ export const usePackagesStore = defineStore('packages', () => {
       }
       items.value = snap.docs.map(d => ({ id: d.id, ...d.data() }))
       lastFetched.value = Date.now()
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ items: items.value, lastFetched: lastFetched.value }))
+      } catch (_) {}
     } catch (e) {
       console.error('fetchAll packages failed:', e)
       error.value = 'فشل في جلب العروض'
