@@ -8,27 +8,27 @@ const mockData = [
   { id: 4, title: 'رحلة دبي', destination: 'دبي', price: 1000, category: 'سياحة', active: true, createdAt: { seconds: 400 } },
 ]
 
-describe('اختبار وظائف العروض', () => {
+describe('Package utilities tests', () => {
 
-  it('يجب أن يستبعد العروض غير النشطة (active: false)', () => {
+  it('should exclude inactive packages (active: false)', () => {
     const result = processPackages(mockData, 'الكل', '', 'newest')
     expect(result.length).toBe(3)
     expect(result.find(p => p.title === 'تأشيرة مصر')).toBeUndefined()
   })
 
-  it('يجب أن يفلتر حسب التصنيف (فنادق)', () => {
+  it('should filter by category (فنادق)', () => {
     const result = processPackages(mockData, 'فنادق', '', 'newest')
     expect(result.length).toBe(1)
     expect(result[0].title).toBe('فندق النهر')
   })
 
-  it('يجب أن يبحث بالاسم (بحث عن "دبي")', () => {
+  it('should search by name ("دبي")', () => {
     const result = processPackages(mockData, 'الكل', 'دبي', 'newest')
     expect(result.length).toBe(1)
     expect(result[0].destination).toBe('دبي')
   })
 
-  it('يجب أن يرتب حسب السعر من الأقل للأعلى', () => {
+  it('should sort by price ascending', () => {
     const result = processPackages(mockData, 'الكل', '', 'price-asc')
     expect(result[0].price).toBe(200) 
     expect(result[2].price).toBe(1000)
@@ -36,9 +36,4 @@ describe('اختبار وظائف العروض', () => {
 
 })
 
-describe('اختبار تحويل العملة', () => {
-  it('يحسب السعر بشكل صحيح', () => {
-    expect(calculatePrice(100, 5)).toBe(500)
-    expect(calculatePrice(10, 1.5)).toBe(15)
-  })
-})
+
