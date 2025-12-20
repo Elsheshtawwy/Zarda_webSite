@@ -21,7 +21,7 @@ const swiperProps = {
   centeredSlides: true,
   slidesPerView: 'auto',
   initialSlide: 1,
-  loop: true,
+  loop: false,
   coverflowEffect: { rotate: 12, stretch: 0, depth: 160, modifier: 2.2, slideShadows: false },
   autoplay: { delay: 3200, disableOnInteraction: false },
   pagination: { clickable: true },
