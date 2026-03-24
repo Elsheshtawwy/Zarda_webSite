@@ -1,5 +1,6 @@
 <template>
-  <section class="py-24 bg-white relative">
+  <section class="py-24 bg-white relative overflow-hidden">
+    <div class="absolute inset-x-0 -top-24 h-48 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none"></div>
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-16">
         <span class="text-primary font-bold tracking-wider text-sm uppercase">بوابتك للعالم</span>
@@ -17,14 +18,29 @@
           <h3 class="text-2xl font-bold text-gray-800 mb-4">تأشيرات وموافقات سريعة</h3>
           <p class="text-gray-500 text-sm mb-6">إصدار تأشيرات وموافقات أمنية دون الحاجة لحضورك الشخصي.</p>
           <ul class="space-y-3">
-            <li class="flex items-center gap-3 text-gray-700 font-medium"><span class="text-xl">🇹🇷</span> تأشيرة تركيا</li>
-            <li class="flex items-center gap-3 text-gray-700 font-medium"><span class="text-xl">🇯🇴</span> موافقة الأردن الأمنية</li>
-            <li class="flex items-center gap-3 text-gray-700 font-medium"><span class="text-xl">🇪🇬</span> موافقة مصر (برية/جوية)</li>
+            <li class="flex items-center gap-3 text-gray-700 font-medium">
+              <span class="text-xl md:hidden" aria-hidden="true">🇹🇷</span>
+              <span class="hidden md:inline-flex min-w-11 justify-center rounded-lg border border-primary/20 bg-primary/5 px-2 py-1 text-xs font-extrabold text-primary tracking-wide">TR</span>
+              تأشيرة تركيا
+            </li>
+            <li class="flex items-center gap-3 text-gray-700 font-medium">
+              <span class="text-xl md:hidden" aria-hidden="true">🇯🇴</span>
+              <span class="hidden md:inline-flex min-w-11 justify-center rounded-lg border border-primary/20 bg-primary/5 px-2 py-1 text-xs font-extrabold text-primary tracking-wide">JO</span>
+              موافقة الأردن الأمنية
+            </li>
+            <li class="flex items-center gap-3 text-gray-700 font-medium">
+              <span class="text-xl md:hidden" aria-hidden="true">🇪🇬</span>
+              <span class="hidden md:inline-flex min-w-11 justify-center rounded-lg border border-primary/20 bg-primary/5 px-2 py-1 text-xs font-extrabold text-primary tracking-wide">EG</span>
+              موافقة مصر (برية/جوية)
+            </li>
           </ul>
         </div>
         <div class="bg-primary rounded-3xl p-8 text-white shadow-2xl transform md:-translate-y-4 relative overflow-hidden">
           <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
-          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center text-3xl backdrop-blur-sm mb-6">🇪🇺</div>
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm mb-6 border border-white/20">
+            <span class="text-3xl md:hidden" aria-hidden="true">🇪🇺</span>
+            <span class="hidden md:inline-flex rounded-md bg-white/20 px-2.5 py-1 text-xs font-extrabold tracking-widest">EU</span>
+          </div>
           <h3 class="text-2xl font-bold mb-4">تأشيرة شنغن (أوروبا)</h3>
           <p class="text-blue-100 text-sm mb-6">خدمة متكاملة لتجهيز ملفك للسفارات الأوروبية.</p>
           <ul class="space-y-4 border-t border-white/20 pt-6">

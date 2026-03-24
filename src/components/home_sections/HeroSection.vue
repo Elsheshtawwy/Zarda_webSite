@@ -21,7 +21,7 @@ onUnmounted(() => { clearInterval(slideInterval) })
 </script>
 
 <template>
-  <section class="relative h-[650px] overflow-hidden bg-gray-900">
+  <section id="home" class="relative h-[650px] overflow-hidden bg-gray-900">
     <div v-for="(slide, index) in slides" :key="slide.id" class="absolute inset-0 transition-opacity duration-700 ease-in-out" :class="index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'">
       <img :src="slide.image" :alt="slide.title" class="w-full h-full object-cover transform scale-105" :class="index === currentSlide ? 'scale-100 transition-transform duration-[7s]' : ''" :loading="index === 0 ? 'eager' : 'lazy'">
       <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"></div>

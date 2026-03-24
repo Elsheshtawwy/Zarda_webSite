@@ -26,6 +26,11 @@ const router = createRouter({
       component: () => import('../views/AllPackagesView.vue')
     },
     {
+      path: '/booking',
+      name: 'booking',
+      component: () => import('../views/BookingView.vue')
+    },
+    {
       path: '/:pathMatch(.*)*', 
       name: 'not-found',
       component: () => import('../views/NotFoundView.vue')

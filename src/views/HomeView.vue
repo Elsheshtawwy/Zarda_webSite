@@ -9,11 +9,23 @@ import LatestPackages from '@/components/home_sections/LatestPackages.vue'
 
 <template>
   <div>
-    <HeroSection />
-    <ServicesSection />
-    <MarketingFlight />
-    <MarketingHotel />
-    <MarketingVisa />
-    <LatestPackages />
+    <div class="reveal-up" style="--reveal-delay: 0s;">
+      <HeroSection />
+    </div>
+    <div class="reveal-up" style="--reveal-delay: 0.08s;">
+      <ServicesSection />
+    </div>
+    <div class="reveal-up" style="--reveal-delay: 0.16s;">
+      <MarketingFlight />
+    </div>
+    <div class="reveal-up" style="--reveal-delay: 0.24s;">
+      <MarketingHotel />
+    </div>
+    <div class="reveal-up" style="--reveal-delay: 0.32s;">
+      <MarketingVisa />
+    </div>
+    <div class="reveal-up" style="--reveal-delay: 0.4s;">
+      <LatestPackages />
+    </div>
   </div>
 </template>

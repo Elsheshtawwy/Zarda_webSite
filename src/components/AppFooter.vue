@@ -88,8 +88,22 @@ import tiktokIcon from '@/assets/social_media_icons/tik-tok.png'
       </div>
     </div>
 
-    <div class="text-center mt-12 pt-8 border-t border-gray-800 text-gray-500 text-sm">
-      &copy; 2025 شركة الزردة للسفر والسياحة. جميع الحقوق محفوظة.
+    <div class="text-center mt-12 pt-8 border-t border-gray-800 text-sm space-y-3">
+      <p dir="rtl" class="text-gray-500">جميع الحقوق محفوظة © 2025 شركة الزردة للسفر والسياحة.</p>
+
+      <div class="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 ring-1 ring-white/10">
+        <span dir="rtl" class="text-sm font-semibold text-gray-200">تم التطوير بواسطة</span>
+        <a
+          href="https://ignitix-website.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          dir="ltr"
+          class="font-extrabold tracking-wide text-accent hover:text-orange-300 underline decoration-accent/40 underline-offset-4 transition-colors"
+          aria-label="زيارة موقع ignitix"
+        >
+          <bdi>IGNITIX</bdi>
+        </a>
+      </div>
     </div>
   </footer>
 </template>

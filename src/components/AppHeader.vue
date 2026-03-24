@@ -4,46 +4,61 @@ import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
 
 const isMenuOpen = ref(false)
 const route = useRoute()
-const activeSection = ref('')
+const activeSection = ref('home')
 const scrolled = ref(false)
+const sectionIds = ['home', 'services', 'packages']
 
 watch(() => route.fullPath, () => { isMenuOpen.value = false })
-const onScroll = () => { scrolled.value = window.scrollY > 20 }
-
-let observer
-const setupObserver = async () => {
-  await nextTick()
+const updateActiveSection = () => {
   if (route.path !== '/') {
     activeSection.value = ''
     return
   }
-  const options = { root: null, rootMargin: '-50% 0px -50% 0px', threshold: 0 }
-  const callback = (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) activeSection.value = entry.target.id
-    })
+
+  const sections = sectionIds
+    .map((id) => document.getElementById(id))
+    .filter(Boolean)
+
+  if (!sections.length) {
+    activeSection.value = 'home'
+    return
   }
-  observer = new IntersectionObserver(callback, options)
-  const ids = ['services', 'packages']
-  ids.forEach(id => {
-    const el = document.getElementById(id)
-    if (el) observer.observe(el)
+
+  const checkLine = window.innerHeight * 0.42
+  const current = sections.find((section) => {
+    const rect = section.getBoundingClientRect()
+    return rect.top <= checkLine && rect.bottom > checkLine
   })
+
+  if (current) {
+    activeSection.value = current.id
+    return
+  }
+
+  const passedSections = sections.filter((section) => section.getBoundingClientRect().top <= checkLine)
+  activeSection.value = passedSections.length ? passedSections[passedSections.length - 1].id : 'home'
+}
+
+const onScroll = () => {
+  scrolled.value = window.scrollY > 20
+  updateActiveSection()
 }
 
 watch(() => route.path, () => {
-  if (observer) observer.disconnect()
-  setupObserver()
+  nextTick(() => {
+    updateActiveSection()
+  })
 })
 
 onMounted(() => {
   window.addEventListener('scroll', onScroll)
-  setupObserver()
+  nextTick(() => {
+    updateActiveSection()
+  })
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', onScroll)
-  if (observer) observer.disconnect()
 })
 </script>
 
@@ -59,14 +74,14 @@ onUnmounted(() => {
         </RouterLink>
 
         <div class="hidden md:flex items-center gap-8">
-          <RouterLink to="/" class="nav-link" :class="{ 'nav-link-active': route.path === '/' && !activeSection }">الرئيسية</RouterLink>
+          <RouterLink to="/" class="nav-link" :class="{ 'nav-link-active': route.path === '/' && activeSection === 'home' }">الرئيسية</RouterLink>
           <RouterLink to="/#services" class="nav-link" :class="{ 'nav-link-active': activeSection === 'services' }">خدماتنا</RouterLink>
           <RouterLink to="/#packages" class="nav-link" :class="{ 'nav-link-active': activeSection === 'packages' }">العروض</RouterLink>
           <RouterLink to="/contact" class="nav-link" active-class="nav-link-active">اتصل بنا</RouterLink>
           
-          <button class="btn-accent">
+          <RouterLink to="/booking" class="btn-accent">
             <span>احجز رحلتك</span><span>✈️</span>
-          </button>
+          </RouterLink>
         </div>
 
         <div class="md:hidden flex items-center">
@@ -94,7 +109,7 @@ onUnmounted(() => {
           <RouterLink to="/#services" class="block text-gray-800 font-medium hover:text-primary transition" @click="isMenuOpen=false">خدماتنا</RouterLink>
           <RouterLink to="/#packages" class="block text-gray-800 font-medium hover:text-primary transition" @click="isMenuOpen=false">العروض</RouterLink>
           <RouterLink to="/contact" class="block text-gray-800 font-medium hover:text-primary transition" @click="isMenuOpen=false">اتصل بنا</RouterLink>
-          <button class="w-full btn-primary mt-2">احجز الآن</button>
+          <RouterLink to="/booking" class="block w-full btn-primary mt-2" @click="isMenuOpen=false">احجز الآن</RouterLink>
         </div>
       </div>
     </transition>

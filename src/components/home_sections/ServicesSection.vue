@@ -1,51 +1,84 @@
 <template>
-  <section id="services" class="py-24 bg-gray-50 relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-64 h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 -translate-y-1/2 translate-x-1/2"></div>
-    <div class="max-w-7xl mx-auto px-4 relative z-10">
-      <div class="text-center mb-20">
-        <span class="text-primary font-bold tracking-wider uppercase text-sm">لماذا تختارنا؟</span>
-        <h2 class="text-4xl font-bold text-gray-800 mt-2 mb-6">خدماتنا المتميزة</h2>
-        <div class="w-20 h-1.5 bg-accent mx-auto rounded-full"></div>
+  <section id="services" class="relative py-32 bg-[#fcfcfd] overflow-hidden">
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-50 rounded-full mix-blend-multiply filter blur-[120px] opacity-50"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-50 rounded-full mix-blend-multiply filter blur-[120px] opacity-50"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-24">
+        <span class="inline-block px-4 py-1.5 mb-4 text-xs font-bold tracking-[0.2em] text-blue-600 uppercase bg-blue-50 rounded-full">
+          لماذا تختار زردة؟
+        </span>
+        <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 font-['Cairo']">
+          خدماتنا المتميزة
+        </h2>
+        <div class="w-12 h-1 bg-blue-600 mx-auto rounded-full"></div>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         
-        <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 group text-center border border-gray-100">
-          <div class="w-20 h-20 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-600 group-hover:text-white transition duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
+        <div class="group relative bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.03)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.07)] transition-all duration-500 hover:-translate-y-3">
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 rounded-[2.5rem] transition-opacity duration-500"></div>
+          
+          <div class="relative z-10">
+            <div class="w-16 h-16 mb-8 flex items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-200 group-hover:scale-110 transition-transform duration-500">
+              <span class="material-symbols-outlined text-3xl">flight_takeoff</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-slate-800 font-['Cairo']">حجز تذاكر</h3>
+            <p class="text-slate-500 leading-relaxed font-['Tajawal']">
+              أسعار حصرية وخيارات مرنة للطيران لأكثر من 500 وجهة حول العالم مع دعم فني متواصل.
+            </p>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-gray-800">حجز تذاكر</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">نوفر أفضل أسعار تذاكر الطيران إلى جميع الوجهات العالمية، مع خيارات مرنة.</p>
         </div>
 
-        <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 group text-center border border-gray-100">
-          <div class="w-20 h-20 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-orange-600 group-hover:text-white transition duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+        <div class="group relative bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.03)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.07)] transition-all duration-500 hover:-translate-y-3">
+          <div class="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-transparent opacity-0 group-hover:opacity-100 rounded-[2.5rem] transition-opacity duration-500"></div>
+          
+          <div class="relative z-10">
+            <div class="w-16 h-16 mb-8 flex items-center justify-center rounded-2xl bg-orange-500 text-white shadow-lg shadow-orange-200 group-hover:scale-110 transition-transform duration-500">
+              <span class="material-symbols-outlined text-3xl">apartment</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-slate-800 font-['Cairo']">حجز فنادق</h3>
+            <p class="text-slate-500 leading-relaxed font-['Tajawal']">
+              نختار لك أفضل الفنادق والمنتجعات بعناية لنضمن لك إقامة فاخرة ومريحة وبأفضل الأسعار.
+            </p>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-gray-800">حجز فنادق</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">نختار لك أفضل الفنادق والمنتجعات حول العالم بعناية وأسعار منافسة.</p>
         </div>
 
-        <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 group text-center border border-gray-100">
-          <div class="w-20 h-20 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-green-600 group-hover:text-white transition duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
+        <div class="group relative bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.03)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.07)] transition-all duration-500 hover:-translate-y-3">
+          <div class="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-transparent opacity-0 group-hover:opacity-100 rounded-[2.5rem] transition-opacity duration-500"></div>
+          
+          <div class="relative z-10">
+            <div class="w-16 h-16 mb-8 flex items-center justify-center rounded-2xl bg-emerald-500 text-white shadow-lg shadow-emerald-200 group-hover:scale-110 transition-transform duration-500">
+              <span class="material-symbols-outlined text-3xl">passport</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-slate-800 font-['Cairo']">تأشيرات</h3>
+            <p class="text-slate-500 leading-relaxed font-['Tajawal']">
+              إجراءات سريعة ومضمونة لاستخراج جميع أنواع التأشيرات مع تجهيز احترافي للملفات.
+            </p>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-gray-800">تأشيرات</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">نقدم خدمات متكاملة لاستخراج جميع أنواع التأشيرات مع تجهيز الملف.</p>
         </div>
 
-        <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 group text-center border border-gray-100">
-          <div class="w-20 h-20 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-purple-600 group-hover:text-white transition duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M12 14l9-5-9-5-9 5 9 5z" />
-              <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-            </svg>
+        <div class="group relative bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.03)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.07)] transition-all duration-500 hover:-translate-y-3">
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-transparent opacity-0 group-hover:opacity-100 rounded-[2.5rem] transition-opacity duration-500"></div>
+          
+          <div class="relative z-10">
+            <div class="w-16 h-16 mb-8 flex items-center justify-center rounded-2xl bg-purple-600 text-white shadow-lg shadow-purple-200 group-hover:scale-110 transition-transform duration-500">
+              <span class="material-symbols-outlined text-3xl">school</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-slate-800 font-['Cairo']">تدريب مهني</h3>
+            <p class="text-slate-500 leading-relaxed font-['Tajawal']">
+              دورات تدريبية متخصصة واستشارات احترافية لتطوير مهارات العاملين في قطاع السفر.
+            </p>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-gray-800">تدريب واستشارات</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">دورات تدريبية واستشارات احترافية في مجال السياحة والسفر.</p>
         </div>
 
       </div>
     </div>
   </section>
 </template>
+
+<style scoped>
+/* إضافة خطوط جوجل لضمان الفخامة */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Tajawal:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
+</style>

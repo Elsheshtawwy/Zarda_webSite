@@ -2,16 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(14, 116, 144, 0.08) 0, transparent 32%),
+      radial-gradient(circle at 85% 10%, rgba(249, 115, 22, 0.08) 0, transparent 28%),
+      linear-gradient(to bottom, #f8fafc, #f8fafc);
+    background-attachment: fixed;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(14, 116, 144, 0);
+  }
+  50% {
+    box-shadow: 0 10px 30px rgba(14, 116, 144, 0.18);
+  }
+}
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
 @layer components {
+  .reveal-up {
+    opacity: 0;
+    animation: fadeUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: var(--reveal-delay, 0s);
+    will-change: transform, opacity;
+  }
+
+  .card-lift {
+    @apply transition duration-300;
+  }
+
+  .card-lift:hover {
+    transform: translateY(-5px);
+  }
  
  
   .btn-accent {
-    @apply bg-accent hover:bg-orange-600 text-white px-6 py-2 rounded-full font-bold shadow-lg shadow-orange-200 transition transform hover:-translate-y-1 flex items-center gap-2 text-sm;
+    @apply bg-accent hover:bg-orange-600 text-white px-6 py-2 rounded-full font-bold shadow-lg shadow-orange-200 transition transform hover:-translate-y-1 hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 flex items-center gap-2 text-sm;
+    animation: glowPulse 2.8s ease-in-out infinite;
   }
 
  
   .btn-primary {
-    @apply bg-primary hover:bg-blue-700 text-white py-3 px-6 rounded-xl font-bold shadow-md transition transform active:scale-95;
+    @apply bg-primary hover:bg-blue-700 text-white py-3 px-6 rounded-xl font-bold shadow-md transition transform hover:-translate-y-0.5 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40;
   }
 
  
@@ -38,10 +99,22 @@
   }
 
   .social-btn {
-    @apply flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 border border-gray-700 hover:bg-primary hover:border-primary transition duration-300;
+    @apply flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 border border-gray-700 hover:bg-primary hover:border-primary transition duration-300 hover:-translate-y-0.5;
   }
 
   .airline-logo {
     @apply h-14 w-auto grayscale hover:grayscale-0 transition opacity-60 hover:opacity-100 hover:scale-110 duration-300;
+    animation: floatY 4.5s ease-in-out infinite;
+  }
+
+  .airline-logo:nth-child(even) {
+    animation-delay: 0.4s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 }
