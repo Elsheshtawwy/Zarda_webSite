@@ -94,7 +94,7 @@ import tiktokIcon from '@/assets/social_media_icons/tik-tok.png'
       <div class="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 ring-1 ring-white/10">
         <span dir="rtl" class="text-sm font-semibold text-gray-200">تم التطوير بواسطة</span>
         <a
-          href="https://ignitix-website.vercel.app/"
+          href="www.ignitix.ly"
           target="_blank"
           rel="noopener noreferrer"
           dir="ltr"
